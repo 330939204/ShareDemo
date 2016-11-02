@@ -1,4 +1,7 @@
 <resources>
   <string name="app_name">shareDemo</string>
   <string name="action_settings">Settings</string>
+  <string name="source_lang">源语言：英文</string>
+  <string name="translate_demo">translate demo</string>
+  <string name="dest_lang">翻译语言：中文</string>
 </resources>
