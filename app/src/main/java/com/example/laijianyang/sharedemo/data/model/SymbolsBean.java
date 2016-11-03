@@ -4,7 +4,7 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * Created by laijianyang on 2016/11/2.
+ * Created by laijianyang on 2016/11/3.
  */
 @Data
 public class SymbolsBean {
@@ -15,8 +15,8 @@ public class SymbolsBean {
   private String ph_other;
   private String ph_tts_mp3;
   /**
-   * part : adj.
-   * means : ["好的","优秀的","有益的","漂亮的，健全的"]
+   * part : n.
+   * means : ["原因","理由","理性","理智"]
    */
 
   private List<PartsBean> parts;

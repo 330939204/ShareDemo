@@ -20,6 +20,6 @@ public interface TranslateService {
    */
   @POST("v2transapi")
   @FormUrlEncoded
-  Call<TranslateResult> tranaslate(@Field("from") String fromLang, @Field("to") String toLang,
+  Call<TranslateResult> translate(@Field("from") String fromLang, @Field("to") String toLang,
       @Field("query") String query, @Field("transtype") String type, @Field("simple_means_flag") int flag);
 }

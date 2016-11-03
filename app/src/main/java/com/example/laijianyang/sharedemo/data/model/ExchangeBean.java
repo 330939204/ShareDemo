@@ -4,15 +4,15 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * Created by laijianyang on 2016/11/2.
+ * Created by laijianyang on 2016/11/3.
  */
 @Data
 public class ExchangeBean {
-  private String word_third;
-  private String word_done;
-  private String word_ing;
-  private String word_past;
+  private String word_est;
+  private String word_er;
+  private List<String> word_third;
+  private List<String> word_done;
   private List<String> word_pl;
-  private List<String> word_est;
-  private List<String> word_er;
+  private List<String> word_ing;
+  private List<String> word_past;
 }

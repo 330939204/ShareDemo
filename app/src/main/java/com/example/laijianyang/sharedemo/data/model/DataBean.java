@@ -1,6 +1,5 @@
 package com.example.laijianyang.sharedemo.data.model;
 
-import java.util.List;
 import lombok.Data;
 
 /**
@@ -10,6 +9,4 @@ import lombok.Data;
 public class DataBean {
   private String dst;
   private String src;
-  private List<?> relation;
-  private List<List<Integer>> result;
 }

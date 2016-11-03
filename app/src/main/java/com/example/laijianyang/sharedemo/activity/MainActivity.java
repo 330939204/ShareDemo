@@ -19,9 +19,6 @@ import com.example.laijianyang.sharedemo.data.model.TranslateResult;
 import com.example.laijianyang.sharedemo.utils.CollectionUtils;
 import java.util.List;
 import java.util.Locale;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         DemoApplication.getInstance()
                        .getDataSource()
                        .getTranslateService()
-                       .tranaslate("en", "zh", editSource.getText().toString(), "translang", 3)
+                       .translate("en", "zh", editSource.getText().toString(), "translang", 3)
                        .enqueue(new SimpleCallback<TranslateResult>() {
 
                          @Override

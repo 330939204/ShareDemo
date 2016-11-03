@@ -32,5 +32,6 @@ public abstract class SimpleCallback<T> implements Callback<T> {
   @Override
   public void onFailure(Call<T> call, Throwable t) {
     Log.e("network error", t.getMessage());
+    onError(t.getMessage());
   }
 }
