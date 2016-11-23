@@ -6,5 +6,5 @@ package com.example.laijianyang.sharedemo.data;
 
 public class API {
 
-  public static final String TRANSLATE_BASE_URL = "http://fanyi.baidu.com/";
+  public static final String COLUMN_BASE_API = "http://zhuanlan.zhihu.com/api/";
 }

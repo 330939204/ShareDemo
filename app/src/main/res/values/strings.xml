@@ -1,7 +1,7 @@
 <resources>
   <string name="app_name">shareDemo</string>
   <string name="action_settings">Settings</string>
-  <string name="source_lang">源语言：英文</string>
-  <string name="translate_demo">translate demo</string>
-  <string name="dest_lang">翻译语言：中文</string>
+  <string name="user_head">用户头像</string>
+  <string name="column_info_template">%1$d 人关注 | %2$d 篇文章</string>
+  <string name="title_column">知乎专栏</string>
 </resources>

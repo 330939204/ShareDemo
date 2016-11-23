@@ -7,6 +7,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
+ * retrofit callback的简单包装
+ *
  * Created by laijianyang on 2016/11/2.
  */
 
@@ -24,7 +26,7 @@ public abstract class SimpleCallback<T> implements Callback<T> {
       try {
         onError(response.errorBody().string());
       } catch (IOException e) {
-        onError(response.errorBody().toString());
+        onError(response.toString());
       }
     }
   }

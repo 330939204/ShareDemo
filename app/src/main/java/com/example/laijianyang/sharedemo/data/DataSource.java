@@ -1,6 +1,6 @@
 package com.example.laijianyang.sharedemo.data;
 
-import com.example.laijianyang.sharedemo.data.services.TranslateService;
+import com.example.laijianyang.sharedemo.data.services.ColumnService;
 import lombok.Getter;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -15,13 +15,13 @@ public class DataSource {
   private final OkHttpClient client;
 
   @Getter
-  private TranslateService translateService;
+  private ColumnService columnService;
 
   public DataSource() {
 
     client = new OkHttpClient();
 
-    translateService = createService(client, API.TRANSLATE_BASE_URL, TranslateService.class);
+    columnService = createService(client, API.COLUMN_BASE_API, ColumnService.class);
   }
 
   private <T> T createService(OkHttpClient client, String url, Class<T> tClass) {
