@@ -11,6 +11,4 @@ public class TranslateResult {
 
   private TransResultBean trans_result;
 
-  private DictResultBean dict_result;
-
 }

@@ -5,16 +5,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.laijianyang.sharedemo.DemoApplication;
 import com.example.laijianyang.sharedemo.R;
 import com.example.laijianyang.sharedemo.data.SimpleCallback;
 import com.example.laijianyang.sharedemo.data.model.DataBean;
-import com.example.laijianyang.sharedemo.data.model.TransResultBean;
 import com.example.laijianyang.sharedemo.data.model.TranslateResult;
 import com.example.laijianyang.sharedemo.utils.CollectionUtils;
 import java.util.List;
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
                          @Override
                          protected void onSuccess(TranslateResult body) {
-                           bindTransResult(body.getTrans_result());
+                           bindTransResult(body);
                          }
 
                          @Override
@@ -60,17 +59,24 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
-  private void bindTransResult(TransResultBean trans_result) {
-    if (!CollectionUtils.isEmpty(trans_result.getData())) {
-      List<DataBean> dataBean = trans_result.getData();
+  private void bindTransResult(TranslateResult translateResult) {
+
+    if (translateResult == null) return;
+
+    StringBuilder sb = new StringBuilder();
+
+    if (!CollectionUtils.isEmpty(translateResult.getTrans_result().getData())) {
+      List<DataBean> dataBean = translateResult.getTrans_result().getData();
       if (dataBean.size() > 1) {
         for (int i = 1; i <= dataBean.size(); i++) {
-          textDest.setText(String.format(Locale.getDefault(), "%d%s", i, dataBean.get(i).getDst()));
+          sb.append(String.format(Locale.getDefault(), "%d%s", i, dataBean.get(i).getDst())).append("\n");
         }
       } else {
-        textDest.setText(dataBean.get(0).getDst());
+        sb.append(dataBean.get(0).getDst()).append("\n");
       }
     }
+
+    textDest.setText(sb);
   }
 
   @Override
