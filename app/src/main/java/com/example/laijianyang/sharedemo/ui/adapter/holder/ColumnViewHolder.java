@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.example.laijianyang.sharedemo.R;
 import com.example.laijianyang.sharedemo.data.model.Column;
+import com.example.laijianyang.sharedemo.ui.activity.ColumnActivity;
 
 /**
  * 专栏view holder
@@ -31,5 +32,6 @@ public class ColumnViewHolder extends RecyclerView.ViewHolder {
     textInfo.setText(itemView.getContext()
                              .getString(R.string.column_info_template, column.getFollowersCount(),
                                         column.getPostsCount()));
+    itemView.setOnClickListener(v-> ColumnActivity.start(itemView.getContext(),column.getUrl()));
   }
 }

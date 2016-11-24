@@ -6,5 +6,6 @@ package com.example.laijianyang.sharedemo.data;
 
 public class API {
 
-  public static final String COLUMN_BASE_API = "http://zhuanlan.zhihu.com/api/";
+  public static final String COLUMN_BASE_URL = "http://zhuanlan.zhihu.com";
+  public static final String COLUMN_BASE_API = COLUMN_BASE_URL + "/api/";
 }
