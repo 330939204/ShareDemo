@@ -19,4 +19,15 @@ public class Avatar {
    * template id为 id， size 为 xl l xs s等
    */
   private String template;
+
+  public String getAvatarS() {
+    return template.replace("{id}", id).replace("{size}", "s");
+  }
+  public String getAvatarM() {
+    return template.replace("{id}", id).replace("{size}", "m");
+  }
+  public String getAvatarL() {
+    return template.replace("{id}", id).replace("{size}", "L");
+  }
+
 }

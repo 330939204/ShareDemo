@@ -10,4 +10,6 @@
   <dimen name="text_size_normal">15sp</dimen>
   <dimen name="text_size_small">14sp</dimen>
   <dimen name="list_item_margin">2px</dimen>
+
+  <dimen name="global_padding">10dp</dimen>
 </resources>
