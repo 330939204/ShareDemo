@@ -23,9 +23,8 @@ public class DataSource {
   public DataSource() {
 
     client = new OkHttpClient();
-
-    columnService = createService(client, API.COLUMN_BASE_API, ColumnService.class);
     factory = GsonConverterFactory.create();
+    columnService = createService(client, API.COLUMN_BASE_API, ColumnService.class);
   }
 
   private <T> T createService(OkHttpClient client, String url, Class<T> tClass) {
