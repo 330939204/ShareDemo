@@ -18,5 +18,5 @@ package com.example.laijianyang.sharedemo;
 
 public interface BaseView {
 
-    void showErrorMessage(String errorMessage);
+  void showErrorMessage(String errorMessage);
 }

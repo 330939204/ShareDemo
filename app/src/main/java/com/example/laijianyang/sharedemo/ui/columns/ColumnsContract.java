@@ -3,7 +3,6 @@ package com.example.laijianyang.sharedemo.ui.columns;
 import com.example.laijianyang.sharedemo.BasePresenter;
 import com.example.laijianyang.sharedemo.BaseView;
 import com.example.laijianyang.sharedemo.data.model.Column;
-
 import java.util.List;
 
 /**

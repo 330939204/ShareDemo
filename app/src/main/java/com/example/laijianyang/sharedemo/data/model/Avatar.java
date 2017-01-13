@@ -23,11 +23,12 @@ public class Avatar {
   public String getAvatarS() {
     return template.replace("{id}", id).replace("{size}", "s");
   }
+
   public String getAvatarM() {
     return template.replace("{id}", id).replace("{size}", "m");
   }
+
   public String getAvatarL() {
     return template.replace("{id}", id).replace("{size}", "L");
   }
-
 }

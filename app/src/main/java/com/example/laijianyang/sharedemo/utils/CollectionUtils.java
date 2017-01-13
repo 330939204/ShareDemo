@@ -13,7 +13,8 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class CollectionUtils {
 
-  private CollectionUtils() {}
+  private CollectionUtils() {
+  }
 
   public static boolean isEmpty(Collection<?> collection) {
     return collection == null || collection.isEmpty();

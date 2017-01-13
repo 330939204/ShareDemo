@@ -5,14 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import com.example.laijianyang.sharedemo.DemoApplication;
 import com.example.laijianyang.sharedemo.R;
-import com.example.laijianyang.sharedemo.data.SimpleCallback;
 import com.example.laijianyang.sharedemo.data.model.Column;
 import com.example.laijianyang.sharedemo.ui.activity.ContainerActivity;
 import com.example.laijianyang.sharedemo.ui.adapter.ColumnAdapter;
 import com.example.laijianyang.sharedemo.ui.adapter.decoration.StaggeredGridItemDecoration;
 import com.example.laijianyang.sharedemo.utils.ViewUtils;
 import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends ContainerActivity implements ColumnsContract.View {
 
@@ -27,7 +25,7 @@ public class MainActivity extends ContainerActivity implements ColumnsContract.V
   @Override
   protected void doOnCreate(Bundle savedInstanceState) {
     adapter = new ColumnAdapter();
-    presenter = new ColumnsPresenter(this);
+    presenter = new ColumnsPresenter(this, DemoApplication.getInstance().getDataSource());
     RecyclerView recyclerColumn = (RecyclerView) findViewById(R.id.recycler_columns);
     recyclerColumn.setAdapter(adapter);
     recyclerColumn.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));

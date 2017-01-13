@@ -1,15 +1,20 @@
 package com.example.laijianyang.sharedemo.ui.columns;
 
-import com.example.laijianyang.sharedemo.DemoApplication;
+import com.example.laijianyang.sharedemo.data.DataSource;
 import com.example.laijianyang.sharedemo.data.SimpleCallback;
 import com.example.laijianyang.sharedemo.data.model.Column;
-import com.google.gson.Gson;
-import com.nostra13.universalimageloader.utils.L;
-import java.util.List;
-import java.util.Random;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyListOf;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.verify;
 
 /**
  * @author laijianyang E-mail: laijianyang@tigerbrokers.com
@@ -17,28 +22,31 @@ import static org.junit.Assert.*;
  */
 public class ColumnsPresenterTest {
 
-  private final static int COLUMN_LIMIT = 16;
-  private final static int COLUMN_OFFSET = 0;
-  private Random mRandom = new Random();
+  @Mock
+  ColumnsContract.View view;
+
+  @Mock
+  DataSource dataSource;
+
+  @Captor
+  ArgumentCaptor<ColumnsContract.View> viewArgumentCaptor;
+
+  @Before
+  public void setUp() throws Exception {
+    MockitoAnnotations.initMocks(this);
+  }
 
   @Test
-  public void loadColumns() throws Exception {
-    assert DemoApplication.getInstance() != null;
-
-    DemoApplication.getInstance()
-                   .getDataSource()
-                   .getColumnService()
-                   .recommendedColumns(COLUMN_LIMIT, mRandom.nextInt(100), COLUMN_OFFSET)
-                   .enqueue(new SimpleCallback<List<Column>>() {
-                     @Override
-                     protected void onSuccess(List<Column> body) {
-                       assertNotNull(body);
-                     }
-
-                     @Override
-                     protected void onError(String errorBody) {
-                       L.e(errorBody);
-                     }
-                   });
+  @SuppressWarnings("unchecked")
+  public void loadColumns_TestWithMock() throws Exception {
+    ColumnsPresenter presenter = new ColumnsPresenter(view, dataSource);
+    doAnswer(invocation -> {
+      ((SimpleCallback<?>) (invocation.getArguments()[0])).onResponse(any(), any());
+      return null;
+    }).when(dataSource.getColumnService().recommendedColumns(anyInt(), anyInt(), anyInt()))
+      .enqueue(any(SimpleCallback.class));
+    presenter.loadColumns();
+    verify(view).showColumns(anyListOf(Column.class));
   }
+
 }

@@ -14,5 +14,4 @@ public class ViewUtils {
   public static void toastMessage(Context context, CharSequence message) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
   }
-
 }
