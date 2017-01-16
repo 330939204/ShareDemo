@@ -31,12 +31,12 @@ public class ColumnsPresenter implements ColumnsContract.Presenter {
               .recommendedColumns(COLUMN_LIMIT, mRandom.nextInt(100), COLUMN_OFFSET)
               .enqueue(new SimpleCallback<List<Column>>() {
                 @Override
-                protected void onSuccess(List<Column> body) {
+                public void onSuccess(List<Column> body) {
                   view.showColumns(body);
                 }
 
                 @Override
-                protected void onError(String errorBody) {
+                public void onError(String errorBody) {
                   view.showErrorMessage(errorBody);
                 }
               });

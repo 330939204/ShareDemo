@@ -14,9 +14,9 @@ import retrofit2.Response;
 
 public abstract class SimpleCallback<T> implements Callback<T> {
 
-  protected abstract void onSuccess(T body);
+  public abstract void onSuccess(T body);
 
-  protected abstract void onError(String errorBody);
+  public abstract void onError(String errorBody);
 
   @Override
   public void onResponse(Call<T> call, Response<T> response) {

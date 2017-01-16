@@ -1,6 +1,7 @@
 package com.example.laijianyang.sharedemo.data;
 
 import com.example.laijianyang.sharedemo.data.services.ColumnService;
+import lombok.Data;
 import lombok.Getter;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -10,14 +11,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by laijianyang on 2016/11/2.
  */
 
+@Data
 public class DataSource {
 
   private final OkHttpClient client;
 
-  @Getter
   private ColumnService columnService;
 
-  @Getter
   private GsonConverterFactory factory;
 
   public DataSource() {
