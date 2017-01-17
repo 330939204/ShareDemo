@@ -1,45 +1,44 @@
 package com.example.laijianyang.sharedemo.ui.columns;
 
-import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import com.example.laijianyang.sharedemo.ActivityPresenter;
 import com.example.laijianyang.sharedemo.DemoApplication;
-import com.example.laijianyang.sharedemo.R;
+import com.example.laijianyang.sharedemo.data.SimpleCallback;
 import com.example.laijianyang.sharedemo.data.model.Column;
-import com.example.laijianyang.sharedemo.ui.activity.ContainerActivity;
-import com.example.laijianyang.sharedemo.ui.adapter.ColumnAdapter;
-import com.example.laijianyang.sharedemo.ui.adapter.decoration.StaggeredGridItemDecoration;
-import com.example.laijianyang.sharedemo.utils.ViewUtils;
 import java.util.List;
+import java.util.Random;
 
-public class MainActivity extends ContainerActivity implements ColumnsContract.View {
+public class MainActivity extends ActivityPresenter<MainActivityView> {
 
-  private ColumnAdapter adapter;
-  private ColumnsContract.Presenter presenter;
+  private final static int COLUMN_LIMIT = 16;
+  private final static int COLUMN_OFFSET = 0;
+  private Random mRandom = new Random();
 
   @Override
-  protected int getActivityContentId() {
-    return R.layout.layout_main;
+  public Class<MainActivityView> getViewDelegateType() {
+    return MainActivityView.class;
   }
 
   @Override
-  protected void doOnCreate(Bundle savedInstanceState) {
-    adapter = new ColumnAdapter();
-    presenter = new ColumnsPresenter(this, DemoApplication.getInstance().getDataSource());
-    RecyclerView recyclerColumn = (RecyclerView) findViewById(R.id.recycler_columns);
-    recyclerColumn.setAdapter(adapter);
-    recyclerColumn.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-    recyclerColumn.addItemDecoration(new StaggeredGridItemDecoration(this));
-    presenter.start();
+  protected void onStart() {
+    super.onStart();
+    loadColumns();
   }
 
-  @Override
-  public void showErrorMessage(String errorMessage) {
-    ViewUtils.toastMessage(this, errorMessage);
-  }
+  public void loadColumns() {
+    DemoApplication.getInstance()
+                   .getDataSource()
+                   .getColumnService()
+                   .recommendedColumns(COLUMN_LIMIT, mRandom.nextInt(100), COLUMN_OFFSET)
+                   .enqueue(new SimpleCallback<List<Column>>() {
+                     @Override
+                     public void onSuccess(List<Column> body) {
+                       viewDelegate.showColumns(body);
+                     }
 
-  @Override
-  public void showColumns(List<Column> columns) {
-    adapter.set(columns);
+                     @Override
+                     public void onError(String errorBody) {
+                       viewDelegate.showErrorMessage(errorBody);
+                     }
+                   });
   }
 }
