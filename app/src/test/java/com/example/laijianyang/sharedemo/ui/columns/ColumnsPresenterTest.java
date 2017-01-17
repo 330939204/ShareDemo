@@ -55,7 +55,7 @@ public class ColumnsPresenterTest {
     when(columnServiceMock.recommendedColumns(anyInt(), anyInt(), anyInt())).thenReturn(callMock);
     presenter.loadColumns();
     verify(callMock).enqueue(simpleCallbackArgumentCaptor.capture());
-    simpleCallbackArgumentCaptor.getValue().onSuccess(new ArrayList<>());
+     simpleCallbackArgumentCaptor.getValue().onSuccess(new ArrayList<>());
     verify(view).showColumns(anyListOf(Column.class));
   }
 }
