@@ -19,4 +19,8 @@ package com.example.laijianyang.sharedemo;
 public interface BasePresenter {
 
   void start();
+
+  void detached();
+
+  void attached();
 }

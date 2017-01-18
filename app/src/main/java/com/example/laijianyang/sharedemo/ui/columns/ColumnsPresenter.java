@@ -5,7 +5,6 @@ import com.example.laijianyang.sharedemo.data.SimpleCallback;
 import com.example.laijianyang.sharedemo.data.model.Column;
 import java.util.List;
 import java.util.Random;
-import lombok.Getter;
 
 /**
  * @author laijianyang E-mail: laijianyang@tigerbrokers.com
@@ -19,6 +18,7 @@ public class ColumnsPresenter implements ColumnsContract.Presenter {
   private final ColumnsContract.View view;
   private Random mRandom = new Random();
   private DataSource dataSource;
+  private boolean isAttached;
 
   public ColumnsPresenter(ColumnsContract.View view, DataSource dataSource) {
     this.view = view;
@@ -32,12 +32,12 @@ public class ColumnsPresenter implements ColumnsContract.Presenter {
               .enqueue(new SimpleCallback<List<Column>>() {
                 @Override
                 public void onSuccess(List<Column> body) {
-                  view.showColumns(body);
+                  if (isAttached) view.showColumns(body);
                 }
 
                 @Override
                 public void onError(String errorBody) {
-                  view.showErrorMessage(errorBody);
+                  if (isAttached) view.showErrorMessage(errorBody);
                 }
               });
   }
@@ -45,5 +45,15 @@ public class ColumnsPresenter implements ColumnsContract.Presenter {
   @Override
   public void start() {
     loadColumns();
+  }
+
+  @Override
+  public void detached() {
+    isAttached = false;
+  }
+
+  @Override
+  public void attached() {
+    isAttached = true;
   }
 }
